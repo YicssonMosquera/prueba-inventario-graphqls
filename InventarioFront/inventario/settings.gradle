@@ -1,0 +1,12 @@
+rootProject.name = 'inventario'
+include 'application:app-service'
+findProject(':application:app-service')?.name = 'app-service'
+include 'domain:model'
+findProject(':domain:model')?.name = 'model'
+include 'domain:usecase'
+findProject(':domain:usecase')?.name = 'usecase'
+include 'infraestructure:driven-adapter:r2dbc'
+findProject(':infraestructure:driven-adapter:r2dbc')?.name = 'r2dbc'
+include 'infraestructure:entry-point:controller'
+findProject(':infraestructure:entry-point:controller')?.name = 'controller'
+
