@@ -1,0 +1,110 @@
+type Query {
+  productos: [Producto]
+  productoPorId(id: ID!): Producto
+
+  bodegas: [Bodega]
+  bodegaPorId(id: ID!): Bodega
+
+  inventarios: [Inventario]
+  inventarioPorId(id: ID!): Inventario
+
+  movimientos: [Movimiento]
+  movimientoId(id: ID!): Movimiento
+
+  usuarios: [Usuario]
+  usuarioId(id: ID!): Usuario
+
+}
+
+type Mutation {
+  crearProducto(input: ProductoInput): Producto
+  actualizarProducto(id: ID!, input: ProductoInput): Producto
+  eliminarProducto(id: ID!): Boolean
+
+  crearBodega(input: BodegaDataInput): Bodega
+  actualizarBodega(id: ID!, input: BodegaDataInput): Bodega
+  eliminarBodega(id: ID!): Boolean
+
+  crearInventario(input: InventarioInput): Inventario
+  actualizarInventario(id: ID!, input: InventarioInput): Inventario
+  eliminarInventario(id: ID!): Boolean
+
+  registrarMovimiento(input: MovimientoInput): Movimiento
+  actualizarMovimiento(id: ID!, input: MovimientoInput): Movimiento
+  eliminarMovimiento(id: ID!): Boolean
+
+  registrarUsuario(input: UsuarioInput): Usuario
+  actualizarUsuario(id: ID!, input: UsuarioInput): Usuario
+  eliminarUsuario(id: ID!): Boolean
+}
+
+type Producto {
+  id: ID
+  nombre: String
+  stok: String
+  descripcion: String
+}
+
+type Bodega {
+  id: ID
+  nombre: String
+  ubicacion: String
+}
+
+type Inventario {
+  id: ID
+  productoId: ID
+  bodegaId: ID
+  cantidad: Int
+}
+
+type Movimiento {
+  id: ID
+  inventarioId: ID
+  tipo: String
+  cantidad: Int
+  fecha: String
+  usuarioId: ID
+  modRed:Boolean
+}
+
+type Usuario {
+  id: ID
+  nombre: String!
+  email: String
+  contrasena: String
+  rol: String
+}
+
+input ProductoInput {
+  nombre: String!
+  stok: String!
+  descripcion: String
+}
+
+input BodegaDataInput {
+  id: ID
+  nombre: String!
+  ubicacion: String!
+}
+
+input InventarioInput {
+  productoId: ID!
+  bodegaId: ID!
+  cantidad: Int!
+}
+
+input MovimientoInput {
+  inventarioId: ID!
+  tipo: String!
+  cantidad: Int!
+  usuarioId: ID!
+  modRed:Boolean
+}
+
+input UsuarioInput {
+  nombre: String!
+  email: String!
+  contrasena: String!
+  rol: String!
+}
